@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1422328503 source:/home/aj/CodeBlocksProjects/RPN/RPN/main.cpp
+	<iostream>
+	<cstring>
+
+1422405504 source:/home/aj/CodeBlocksProjects/RPN/RPN/DriverRPN.cpp
+	<iostream>
+	<cstring>
+	"RPN.h"
+
+1422405615 /home/aj/CodeBlocksProjects/RPN/RPN/RPN.h
+	<iostream>
+	<cstring>
+
+1422405610 source:/home/aj/CodeBlocksProjects/RPN/RPN/RPN.cpp
+	"RPN.h"
+
