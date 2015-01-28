@@ -7,7 +7,7 @@
 
 
 // Add a Node to the head (front) of the linked list
-void RPN::Push(char data){
+void RPN::Push(int data){
     Head = new Node(data, Head);
     if(Tail == 0)
         Tail = Head;
@@ -66,74 +66,77 @@ int RPN::EvaluatePostfix(char* Expression){
     for(int i=0; i < strlen(Expression); i++){
         //cout << Expression[i] << endl;
         // will hold variable to be pushed back onto stack after evaluating current operation
-        int tmp = 0;
-        int tmp1 = 0;
-        int tmp2 = 0;
+
         if(Expression[i] == '+'){
-            tmp1 = (Head->Data - 48);
-            tmp2 = (Head->Next->Data - 48);
-            tmp = tmp1 + tmp2;
-            //tmp = (Head->Data - 48) + (Head->Next->Data - 48);
-            cout << Head->Data << " + " << Head->Next->Data << endl;
+            // add the top two values on the stack and place in tmpPlusValue
+            int tmpPlusValue = Head->Next->Data + Head->Data;
+            cout << "DEBUG::EvaluatePostfix::if-- Addition of top two values on stack: ";
+            cout << Head->Next->Data << " + " << Head->Data << " = " << tmpPlusValue << endl;
+            // remove two top values that have just been added
             Pop();
-            //Print();
             Pop();
-            //Print();
-            Push(tmp+48);
+            // push newly added number onto the stack as a replacement
+            Push(tmpPlusValue);
+            // print out what the stack looks like
+            cout << "DEBUG::EvaluatePostfix::if-- New stack after addition: ";
             Print();
-            //return tmp;
+        }
+
+        else if(Expression[i] == '-'){
+             // minus the top two values on the stack and place in tmpPlusValue
+            int tmpMinusValue = Head->Next->Data - Head->Data;
+            cout << "DEBUG::EvaluatePostfix::if-- Minus of top two values on stack: ";
+            cout << Head->Next->Data << " - " << Head->Data << " = " << tmpMinusValue << endl;
+            // remove two top values that have just been added
+            Pop();
+            Pop();
+            // push newly added number onto the stack as a replacement
+            Push(tmpMinusValue);
+            // print out what the stack looks like
+            cout << "DEBUG::EvaluatePostfix::if-- New stack after subtraction: ";
+            Print();
         }
         else if(Expression[i] == '*'){
-            tmp1 = (Head->Data - 48);
-            tmp2 = (Head->Next->Data - 48);
-            tmp = tmp1 * tmp2;
-
-            //tmp = (Head->Data - 48) * (Head->Next->Data - 48);
-            cout << Head->Data << " * " << Head->Next->Data << endl;
+            // multiply the top two values on the stack and place in tmpPlusValue
+            int tmpMultValue = Head->Next->Data * Head->Data;
+            cout << "DEBUG::EvaluatePostfix::if-- Multiplication of top two values on stack: ";
+            cout << Head->Next->Data << " * " << Head->Data << " = " << tmpMultValue << endl;
+            // remove two top values that have just been added
             Pop();
-            //Print();
             Pop();
-            //Print();
-            Push(tmp+48);
+            // push newly added number onto the stack as a replacement
+            Push(tmpMultValue);
+            // print out what the stack looks like
+            cout << "DEBUG::EvaluatePostfix::if-- New stack after Multiplicaiton: ";
             Print();
         }
         else if(Expression[i] == '/'){
-            tmp1 = (Head->Data - 48);
-            tmp2 = (Head->Next->Data - 48);
-            tmp = tmp1 / tmp2;
-
-            //tmp = (Head->Data - 48) / (Head->Next->Data - 48);
-            cout << Head->Data << " / " << Head->Next->Data << endl;
+            // divide the top two values on the stack and place in tmpPlusValue
+            int tmpDivValue = Head->Next->Data / Head->Data;
+            cout << "DEBUG::EvaluatePostfix::if-- Divide of top two values on stack: ";
+            cout << Head->Next->Data << " / " << Head->Data << " = " << tmpDivValue << endl;
+            // remove two top values that have just been added
             Pop();
-            //Print();
             Pop();
-            //Print();
-            Push(tmp+48);
+            // push newly added number onto the stack as a replacement
+            Push(tmpDivValue);
+            // print out what the stack looks like
+            cout << "DEBUG::EvaluatePostfix::if-- New stack after division: ";
             Print();
         }
-        else if(Expression[i] == '-'){
-            tmp1 = (Head->Data - 48);
-            tmp2 = (Head->Next->Data - 48);
-            tmp = tmp1 - tmp2;
 
-            //tmp = (Head->Data - 48) - (Head->Next->Data - 48);
-            cout << Head->Data << " - " << Head->Next->Data << endl;
-            Pop();
-            //Print();
-            Pop();
-            //Print();
-            Push(tmp+48);
-            Print();
-        }
-        // else it is a number so push onto stack
-        // need to add conditional checks for number
+        // else the token is a value so it must be pushed onto stack
+        // convert char value to int value and push onto stack
         else{
-            Push(Expression[i]);
-            cout << "Push: " << Expression[i] << endl;
+            int valueToBePushed = 0;
+            // converts to char number to int number
+            valueToBePushed = (Expression[i] - '0');
+            Push(valueToBePushed);
+            cout << "DEBUG::EvaluatePostfix::else-- newly pushed value on stack: " << Head->Data << endl;
         }
-    }
-    return (Head->Data - 48);
 
+    }// for() loop
+    return (Head->Data);
 }//END EvaluatePostfix()
 // Check if given Postfix (RPN) expression is valid
 bool RPN::IsValidPostfix(char*){

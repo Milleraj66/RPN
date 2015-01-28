@@ -1,7 +1,7 @@
 // Author: Arthur Miller
 // File Name: DriverRPN.cpp
 // Purpose: Driver function to test RPN.cpp
-
+// Date: 01-27-14
 
 
 #include "RPN.h"
@@ -9,14 +9,14 @@
 
 using namespace std;
 
-
+// each number in postfix expression must be from 0 to 9
 
 int main()
 {
     // c-string for infix style expression
     char Infix1[256] = "1*2*3+1-5+8";
     // c-string for postfix(ReversePolishNotation) style expression
-    char PostFix1[256] = "512+4*+3";
+    char PostFix1[256] = "512+4*+3-2/";
 
     // print intial infix expressions
     cout << "Infix1 Expression: ";
@@ -32,23 +32,11 @@ int main()
     }
     cout << endl;
 
-    char a = '2';
-    char b = '9';
-    int tmp = 0;
-    tmp = a*b;
-    cout << tmp << endl;
-    int tmpa = a-48;
-    int tmpb = b-48;
-    cout << tmpa << endl;
-    cout << tmpb << endl;
-    tmp = tmpa*tmpb;
-    cout << tmp << endl;
-
-    RPN L1;
-
-    // Testing for Postfix evaluation of expression
-    cout << L1.EvaluatePostfix(PostFix1) << endl;
-
+    // Object for testing PostFix1 expression
+    RPN PostfixObject;
+    // Will return the evaluated expression value as an int
+    cout << "The PostFix1 expression evaluated is : ";
+    cout << PostfixObject.EvaluatePostfix(PostFix1);
 
     return 0;
 }

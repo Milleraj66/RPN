@@ -9,10 +9,10 @@ using namespace std;
 // Node for the Linked List
 class Node{
         public:
-            char Data;
+            int Data;
             Node *Next;
             // Constructor
-            Node(char el, Node *ptr = 0){
+            Node(int el, Node *ptr = 0){
                  Data = el;
                  Next = ptr;
             }
@@ -29,28 +29,13 @@ class RPN{
             Head = 0;
             Tail = 0;
         }
-        // Destructor
-        /*~RPN(){
-            for(Node *p; !IsEmpty();){
-                p = Head->Next;
-                delete Head;
-                Head = p;
-            }
-
-
-            while(!IsEmpty()){
-                Node *p = Head->Next;
-                delete Head;
-                Head = p;
-            }
-        }*/
 
         // Methods
         bool IsEmpty(){
             return Tail==0;
         }
         // Stack Methods
-        void Push(char data);
+        void Push(int data);
         void Pop();
         void Print(); // print out fill list
         // RPN Methods
