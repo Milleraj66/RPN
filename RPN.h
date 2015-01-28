@@ -37,15 +37,16 @@ class RPN{
         // Stack Methods
         void Push(int data);
         void Pop();
+        int NumberOfNodes();
         void Print(); // print out fill list
-        // RPN Methods
 
+        /********** RPN Methods ****************************/
         // Convert Infix notation to Postfix (RPN) notation
         void InfixToPostfix(char []);
         // Check if valid Infix expression
         bool IsValidInfix(char []);
         // Evaluate given Postfix (RPN) expression
-        int EvaluatePostfix(char []);
+        int EvaluatePostfix(char []); /**Working**/
         // Check if given Postfix (RPN) expression is valid
         bool IsValidPostfix(char []);
 
